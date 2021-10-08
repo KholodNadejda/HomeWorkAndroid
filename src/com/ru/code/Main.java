@@ -24,31 +24,32 @@ public class Main {
      • и т.д.*/
     static void task7(){
 
-        String numProgrStrForWork;
+        String enteredNumberInString;
         int numProgFull;
 
-        numProgrStrForWork = enterNumber("Введите количество программистов:");
-        if (numProgrStrForWork == null) {
+        enteredNumberInString = enterNumber("Введите количество программистов:");
+        if (enteredNumberInString == null) {
             return;
         }
-        numProgFull = Integer.parseInt(numProgrStrForWork);
-
+        numProgFull = Integer.parseInt(enteredNumberInString);
         if(numProgFull > 10) { //для чисел 11, 12, 13, 14 действует исключение в правилах русского языка
-            numProgrStrForWork = numProgrStrForWork.substring(numProgrStrForWork.length() - 2);
+            enteredNumberInString = enteredNumberInString.substring(enteredNumberInString.length() - 2);
         }
-        if (numProgrStrForWork.equals("11") || numProgrStrForWork.equals("12")|| numProgrStrForWork.equals("13")|| numProgrStrForWork.equals("14"))
-        {
+        if (    Integer.parseInt(enteredNumberInString) == 11 ||
+                Integer.parseInt(enteredNumberInString) == 12 ||
+                Integer.parseInt(enteredNumberInString) == 13 ||
+                Integer.parseInt(enteredNumberInString) == 14 ) {
             System.out.println(numProgFull + " программистов");
             return;
         }
-        numProgrStrForWork = numProgrStrForWork.substring(numProgrStrForWork.length() - 1);
-        if (numProgrStrForWork.equals("1")) {
+        enteredNumberInString = enteredNumberInString.substring(enteredNumberInString.length() - 1);
+        if (Integer.parseInt(enteredNumberInString) == 1) {
             System.out.println(numProgFull + " программист");
-        }
-        else if (numProgrStrForWork.equals("2")|| numProgrStrForWork.equals("3") || numProgrStrForWork.equals("4")) {
+        } else if ( Integer.parseInt(enteredNumberInString) == 2 ||
+                    Integer.parseInt(enteredNumberInString) == 3 ||
+                    Integer.parseInt(enteredNumberInString) == 4) {
             System.out.println(numProgFull + " программиста");
-        }
-        else {
+        } else {
             System.out.println(numProgFull + " программистов");
         }
     }
@@ -74,18 +75,19 @@ public class Main {
     }
 
     static String enterNumber(String varNum){
+        String keybordValue = null;
         for (int i = 1; i < 4; i++){ //более удобные параметры цикла, чтобы в код читался понятнее
             System.out.println(varNum);
             try{
                 Scanner newScan = new Scanner(System.in);
-                return String.valueOf(newScan.nextInt()); //если делать статик в классе вне методов то он не вызываектся каждый раз заново и не дает вводить новые строки
+                keybordValue = String.valueOf(newScan.nextInt()); //если делать статик в классе вне методов то он не вызываектся каждый раз заново и не дает вводить новые строки
             }
             catch (Exception ex)
             {
                 System.out.println("Вы ввели некорректное число, осталось попыток: " + (3-i));
             }
         }
-        return null;
+        return keybordValue;
     }
     /**
      * 1) В переменную записываем число. Надо вывести на экран сколько в этом
@@ -104,21 +106,17 @@ public class Main {
         int numEnter = Integer.parseInt(forCheck);
         if(numEnter < 0){
             System.out.print("Число отрицательное, ");
-        }
-        else if(numEnter > 0){
+        } else if(numEnter > 0) {
             System.out.print("Число положительное, ");
-        }
-        else {
+        } else {
             System.out.println("Число 0");
             return;
         }
         if (abs(numEnter) > 9 && abs(numEnter) < 100) {
             System.out.println(" двухзначное.");
-        }
-        else if (abs(numEnter) < 10) {
+        } else if (abs(numEnter) < 10) {
             System.out.println(" однозначное.");
-        }
-        else {
+        } else {
             System.out.println(" трехзначное и более.");
         }
     }
@@ -154,8 +152,7 @@ public class Main {
 
         if ((sideAB + sideBC) > sideCA && (sideAB + sideCA) > sideBC && (sideBC + sideCA) > sideAB){
             System.out.printf("Треугольник со сторонами %d, %d, %d существует", sideAB, sideBC, sideCA);
-        }
-        else {
+        } else {
             System.out.printf("Треугольник со сторонами %d, %d, %d не существует", sideAB, sideBC, sideCA);
         }
         System.out.println();
@@ -176,11 +173,9 @@ public class Main {
 
         if (numForTask > 0){
             System.out.printf("Результат: %d", (numForTask+1));
-        }
-        else if(numForTask<0){
+        } else if (numForTask<0) {
             System.out.printf("Результат: %d", (numForTask-2));
-        }
-        else {
+        } else {
             System.out.print("Результат: 10");
         }
         System.out.println();
@@ -189,7 +184,7 @@ public class Main {
     /**4) Даны 3 целых числа. Найти количество положительных чисел в исходном
      наборе.
      */
-    static void task4(){
+    static void task4() {
         String forCheck;
         int numOfNum = 0;
         for (int i = 0; i<3; i++) {
@@ -230,7 +225,7 @@ public class Main {
         System.out.println();
     }
 
-    static void task8(){
+    static void task8() {
         Scanner in = new Scanner(System.in);
         System.out.println("Введите строку:");
         String S = in.nextLine();
