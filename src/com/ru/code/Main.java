@@ -159,7 +159,6 @@ public class Main {
             return;
         }
         int numForTask = Integer.parseInt(forCheck);
-
         if (numForTask > 0) {
             System.out.printf("Результат: %d.\n\n", (numForTask+1));
         } else if (numForTask < 0) {
