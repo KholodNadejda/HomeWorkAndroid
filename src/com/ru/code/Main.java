@@ -22,44 +22,39 @@ public class Main {
      • 1 программиста
      • 10 программистов
      • и т.д.*/
-    static void task7(){
+    static void task7() {
 
-        String enteredNumberInString;
-        int numProgFull;
-
-        enteredNumberInString = enterNumber("Введите количество программистов:");
+        String enteredNumberInString = enterNumber("Введите количество программистов:");
         if (enteredNumberInString == null) {
             return;
         }
-        numProgFull = Integer.parseInt(enteredNumberInString);
-        if(numProgFull > 10) { //для чисел 11, 12, 13, 14 действует исключение в правилах русского языка
+        int numProgFull = Integer.parseInt(enteredNumberInString);
+        if (numProgFull > 10) { //для чисел 11, 12, 13, 14 действует исключение в правилах русского языка
             enteredNumberInString = enteredNumberInString.substring(enteredNumberInString.length() - 2);
         }
         if (    Integer.parseInt(enteredNumberInString) == 11 ||
                 Integer.parseInt(enteredNumberInString) == 12 ||
                 Integer.parseInt(enteredNumberInString) == 13 ||
                 Integer.parseInt(enteredNumberInString) == 14 ) {
-            System.out.println(numProgFull + " программистов");
+            System.out.println(numProgFull + " программистов.\n");
             return;
         }
         enteredNumberInString = enteredNumberInString.substring(enteredNumberInString.length() - 1);
         if (Integer.parseInt(enteredNumberInString) == 1) {
-            System.out.println(numProgFull + " программист");
+            System.out.println(numProgFull + " программист.\n");
         } else if ( Integer.parseInt(enteredNumberInString) == 2 ||
                     Integer.parseInt(enteredNumberInString) == 3 ||
                     Integer.parseInt(enteredNumberInString) == 4) {
-            System.out.println(numProgFull + " программиста");
+            System.out.println(numProgFull + " программиста.\n");
         } else {
-            System.out.println(numProgFull + " программистов");
+            System.out.println(numProgFull + " программистов.\n");
         }
     }
 
     /**6) Даны 2 числа. Вывести большее из них.*/
     static void task6(){
 
-        String forCheck;
-
-        forCheck = enterNumber("Введите первое число:");
+        String forCheck = enterNumber("Введите первое число:");
         if (forCheck == null) {
             return;
         }
@@ -71,23 +66,21 @@ public class Main {
         }
         int secNum = Integer.parseInt(forCheck);
 
-        System.out.println("Число " + Math.max(secNum, frstNum) + " большее");
+        System.out.println("Число " + Math.max(secNum, frstNum) + " большее.\n");
     }
 
-    static String enterNumber(String varNum){
-        String keybordValue = null;
-        for (int i = 1; i < 4; i++){ //более удобные параметры цикла, чтобы в код читался понятнее
+    static String enterNumber(String varNum) {
+        for (int i = 1; i < 4; i++) { //более удобные параметры цикла, чтобы в код читался понятнее
             System.out.println(varNum);
-            try{
-                Scanner newScan = new Scanner(System.in);
-                keybordValue = String.valueOf(newScan.nextInt()); //если делать статик в классе вне методов то он не вызываектся каждый раз заново и не дает вводить новые строки
+            try {
+                Scanner newScan = new Scanner(System.in); //если делать статик в классе вне методов то он не вызываектся каждый раз заново и не дает вводить новые строки
+                return String.valueOf(newScan.nextInt()); //ретурн необходим для выхода из метода до истечения всех попыток
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 System.out.println("Вы ввели некорректное число, осталось попыток: " + (3-i));
             }
         }
-        return keybordValue;
+        return null;
     }
     /**
      * 1) В переменную записываем число. Надо вывести на экран сколько в этом
@@ -95,29 +88,27 @@ public class Main {
      * однозначное положительное число". Достаточно будет определить, является ли
      * число однозначным, "двухзначным или трехзначным и более.
      */
-    static void task1(){
+    static void task1() {
 
-        String forCheck;
-
-        forCheck = enterNumber("Введите число:");
+        String forCheck = enterNumber("Введите число:");
         if (forCheck == null) {
             return;
         }
         int numEnter = Integer.parseInt(forCheck);
-        if(numEnter < 0){
+        if(numEnter < 0) {
             System.out.print("Число отрицательное, ");
         } else if(numEnter > 0) {
             System.out.print("Число положительное, ");
         } else {
-            System.out.println("Число 0");
+            System.out.println("Число 0.\n");
             return;
         }
         if (abs(numEnter) > 9 && abs(numEnter) < 100) {
-            System.out.println(" двухзначное.");
+            System.out.println(" двухзначное.\n");
         } else if (abs(numEnter) < 10) {
-            System.out.println(" однозначное.");
+            System.out.println(" однозначное.\n");
         } else {
-            System.out.println(" трехзначное и более.");
+            System.out.println(" трехзначное и более.\n");
         }
     }
 
@@ -129,10 +120,9 @@ public class Main {
      * окажется больше суммы двух других, то треугольника с такими сторонами не
      * существует
      */
-    static void task2(){
-        String forCheck;
+    static void task2() {
 
-        forCheck = enterNumber("Введите сторону AB треугольника АВС:");
+        String forCheck = enterNumber("Введите сторону AB треугольника АВС:");
         if (forCheck == null) {
             return;
         }
@@ -150,35 +140,33 @@ public class Main {
         }
         int sideCA = Integer.parseInt(forCheck);
 
-        if ((sideAB + sideBC) > sideCA && (sideAB + sideCA) > sideBC && (sideBC + sideCA) > sideAB){
-            System.out.printf("Треугольник со сторонами %d, %d, %d существует", sideAB, sideBC, sideCA);
+        if (    (Math.abs(sideAB) + Math.abs(sideBC)) > Math.abs(sideCA) &&
+                (Math.abs(sideAB) + Math.abs(sideCA)) > Math.abs(sideBC) &&
+                (Math.abs(sideBC) + Math.abs(sideCA)) > Math.abs(sideAB)) {
+            System.out.printf("Треугольник со сторонами %d, %d, %d существует.\n\n", sideAB, sideBC, sideCA);
         } else {
-            System.out.printf("Треугольник со сторонами %d, %d, %d не существует", sideAB, sideBC, sideCA);
+            System.out.printf("Треугольник со сторонами %d, %d, %d не существует.\n\n", sideAB, sideBC, sideCA);
         }
-        System.out.println();
     }
 
     /**3) Дано целое число. Если оно является положительным, то прибавить к нему 1.
      //Если отрицательным, то вычесть из него 2. Если нулевым, то заменить его на
      //10. Вывести полученное число.
      */
-    static void task3(){
-        String forCheck;
-
-        forCheck = enterNumber("Введите число:");
+    static void task3() {
+        String forCheck = enterNumber("Введите число:");
         if (forCheck == null) {
             return;
         }
         int numForTask = Integer.parseInt(forCheck);
 
-        if (numForTask > 0){
-            System.out.printf("Результат: %d", (numForTask+1));
-        } else if (numForTask<0) {
-            System.out.printf("Результат: %d", (numForTask-2));
+        if (numForTask > 0) {
+            System.out.printf("Результат: %d.\n\n", (numForTask+1));
+        } else if (numForTask < 0) {
+            System.out.printf("Результат: %d.\n\n", (numForTask-2));
         } else {
-            System.out.print("Результат: 10");
+            System.out.print("Результат: 10.\n\n");
         }
-        System.out.println();
     }
 
     /**4) Даны 3 целых числа. Найти количество положительных чисел в исходном
@@ -196,8 +184,7 @@ public class Main {
                 numOfNum++;
             }
         }
-        System.out.printf("В исходном наборе положительных чисел: %d", numOfNum);
-        System.out.println();
+        System.out.printf("В исходном наборе положительных чисел: %d.\n\n", numOfNum);
     }
 
     /**5) Даны 3 целых числа. Найти количество положительных и отрицательных
@@ -221,23 +208,21 @@ public class Main {
                 negNum++;
             }
         }
-        System.out.printf("В исходном наборе положительных чисел: %d.\nВ исходном наборе отрицательных чисел: %d.", posNum, negNum);
-        System.out.println();
+        System.out.printf("В исходном наборе положительных чисел: %d.\nВ исходном наборе отрицательных чисел: %d.\n\n", posNum, negNum);
     }
 
     static void task8() {
         Scanner in = new Scanner(System.in);
         System.out.println("Введите строку:");
         String S = in.nextLine();
-        for (int i = 0; i<S.length(); i++){
-            for (int j = i+1 ; j<S.length(); ++j ){
-                if(S.charAt(i) == S.charAt(j) && S.charAt(i) != ' '){
-                    System.out.printf("Первый повторяющийся символ: %s", S.charAt(i));
-                    System.out.println();
+        for (int i = 0; i<S.length(); i++) {
+            for (int j = i+1 ; j<S.length(); ++j ) {
+                if(S.charAt(i) == S.charAt(j) && S.charAt(i) != ' ') {
+                    System.out.printf("Первый повторяющийся символ: %s.\n\n", S.charAt(i));
                     return;
                 }
             }
         }
-        System.out.println("Повторяющихся символов нет.");
+        System.out.println("Повторяющихся символов нет.\n");
     }
 }
